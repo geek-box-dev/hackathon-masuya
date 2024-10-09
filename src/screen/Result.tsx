@@ -1,7 +1,6 @@
 import logo from '../logo.svg';
 import '../App.css';
 
-// NOTE: コンテンツ操作結果の反映画面（プロジェクタ投影画面）
 export function Result() {
   return (
     <div className="App">

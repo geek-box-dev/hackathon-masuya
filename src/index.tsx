@@ -15,18 +15,22 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
+    // NOTE: 導入ストーリーの画面
     path: '/introduction',
     element: <Introduction />,
   },
   {
+    // NOTE: コンテンツ操作の画面
     path: '/contents',
     element: <Contents />,
   },
   {
+    // NOTE: コンテンツ終了後の画面
     path: '/success',
     element: <Success />,
   },
   {
+    // NOTE: コンテンツ操作結果の反映画面（プロジェクタ投影画面）
     path: '/result',
     element: <Result />,
   },

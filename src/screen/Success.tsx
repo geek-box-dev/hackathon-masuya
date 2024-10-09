@@ -1,7 +1,6 @@
 import '../App.css';
 import logo from '../logo.svg';
 
-// NOTE: コンテンツ終了後の画面
 export function Success() {
   return (
     <div className="App">

@@ -2,7 +2,6 @@ import {useNavigate} from 'react-router-dom';
 import '../App.css';
 import logo from '../logo.svg';
 
-// NOTE: 導入ストーリーの画面
 export function Introduction() {
   const navigate = useNavigate();
   return (
