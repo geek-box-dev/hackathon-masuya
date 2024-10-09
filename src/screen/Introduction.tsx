@@ -1,28 +1,43 @@
+import {Box, Stack} from '@mui/material';
+import {useRef, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-import '../App.css';
-import logo from '../logo.svg';
+import story from '../asset/story.mp4';
 
 export function Introduction() {
   const navigate = useNavigate();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) {
+      return;
+    }
+    video.play();
+    video.addEventListener('ended', () => {
+      navigate('/contents');
+    });
+    return () => {
+      video.removeEventListener('ended', () => {
+        navigate('/contents');
+      });
+    };
+  }, [navigate]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>導入ストーリーの画面</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer">
-          Learn React
-        </a>
-        <button
-          onClick={() => {
-            navigate('/contents');
-          }}>
-          コンテンツ体験
-        </button>
-      </header>
-    </div>
+    <Stack
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <Box
+        ref={videoRef}
+        component="video"
+        src={story}
+        sx={{
+          height: '100vh',
+          width: '100vw',
+          objectFit: 'cover',
+        }}
+      />
+    </Stack>
   );
 }
