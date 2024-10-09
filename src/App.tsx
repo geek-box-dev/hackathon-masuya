@@ -2,7 +2,6 @@ import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFil
 import {Box, IconButton, Stack} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import start_bg_image from '../src/asset/start_bg_image.png';
-import './App.css';
 
 function App() {
   const navigate = useNavigate();
