@@ -1,31 +1,54 @@
+import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
+import {Box, IconButton, Stack} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
-import logo from './logo.svg';
+import start_bg_image from '../src/asset/start_bg_image.png';
 import './App.css';
 
 function App() {
   const navigate = useNavigate();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer">
-          Learn React
-        </a>
-        <button
-          onClick={() => {
-            navigate('/introduction');
-          }}>
-          導入ストーリー
-        </button>
-      </header>
-    </div>
+    <Stack
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <Box
+        component="img"
+        sx={{
+          height: '100vh',
+          width: '100vw',
+          objectFit: 'cover',
+        }}
+        src={start_bg_image}
+      />
+      <IconButton
+        onClick={() => {
+          navigate('/introduction');
+        }}
+        sx={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          margin: 'auto',
+          '&:hover': {
+            backgroundColor: 'transparent',
+          },
+          '&:click': {
+            backgroundColor: 'transparent',
+          },
+        }}>
+        <PlayCircleFilledWhiteOutlinedIcon
+          sx={{
+            height: '25vh',
+            width: '25vw',
+            color: 'white',
+          }}
+        />
+      </IconButton>
+    </Stack>
   );
 }
 
