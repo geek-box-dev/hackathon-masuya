@@ -13,11 +13,11 @@ export function Introduction() {
     }
     video.play();
     video.addEventListener('ended', () => {
-      navigate('/contents');
+      navigate('/result');
     });
     return () => {
       video.removeEventListener('ended', () => {
-        navigate('/contents');
+        navigate('/result');
       });
     };
   }, [navigate]);

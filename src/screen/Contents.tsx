@@ -36,6 +36,12 @@ export function Contents() {
         </a>
         <button
           onClick={() => {
+            navigate('/');
+          }}>
+          ホーム
+        </button>
+        <button
+          onClick={() => {
             navigate('/success');
           }}>
           コンテンツ成功
