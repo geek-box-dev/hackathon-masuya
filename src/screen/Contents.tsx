@@ -1,16 +1,15 @@
 import {useNavigate} from 'react-router-dom';
-import logo from './logo.svg';
-import './App.css';
+import '../App.css';
+import logo from '../logo.svg';
 
-function App() {
+// NOTE: コンテンツ操作の画面
+export function Contents() {
   const navigate = useNavigate();
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <p>コンテンツ操作の画面</p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -20,13 +19,11 @@ function App() {
         </a>
         <button
           onClick={() => {
-            navigate('/introduction');
+            navigate('/success');
           }}>
-          導入ストーリー
+          コンテンツ成功
         </button>
       </header>
     </div>
   );
 }
-
-export default App;
