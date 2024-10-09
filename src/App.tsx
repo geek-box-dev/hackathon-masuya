@@ -1,9 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import {Sock} from './Sock';
 
 function App() {
   return (
     <div className="App">
+      <Sock />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
