@@ -75,7 +75,7 @@ export function Leader() {
           />
         );
       case 'success':
-        return <Success changeState={() => setState('standby')} />;
+        return <Success />;
       default:
         return null;
     }

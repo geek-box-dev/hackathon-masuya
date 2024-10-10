@@ -24,3 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 src/asset/game.mp4
 src/asset/story.mp4
+src/asset/success.mp4

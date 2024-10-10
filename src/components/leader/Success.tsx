@@ -1,21 +1,32 @@
-import '../../App.css';
-import logo from '../../logo.svg';
-import {LeaderScreenProps} from '../../screen/Leader';
+/** @jsxImportSource @emotion/react */
+import {useRef} from 'react';
+import success from '../../asset/success.mp4';
 
-export function Success({changeState}: LeaderScreenProps) {
+export function Success() {
+  const videoRef = useRef<HTMLVideoElement>(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>コンテンツ終了後の画面</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
+    <div
+      css={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        width: '100vw',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+      <video
+        ref={videoRef}
+        src={success}
+        css={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+        }}
+      />
     </div>
   );
 }
