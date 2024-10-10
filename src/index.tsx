@@ -5,8 +5,8 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Contents} from './screen/Contents';
+import {Game} from './screen/Game';
 import {Introduction} from './screen/Introduction';
-import {Result} from './screen/Result';
 import {Success} from './screen/Success';
 
 const router = createBrowserRouter([
@@ -31,8 +31,8 @@ const router = createBrowserRouter([
   },
   {
     // NOTE: コンテンツ操作結果の反映画面（プロジェクタ投影画面）
-    path: '/result',
-    element: <Result />,
+    path: '/game',
+    element: <Game />,
   },
 ]);
 

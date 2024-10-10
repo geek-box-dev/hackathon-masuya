@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import {useRef, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-import story from '../asset/story.mp4';
+import game from '../asset/game.mp4';
 
-export function Introduction() {
+export function Game() {
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
@@ -12,14 +12,6 @@ export function Introduction() {
       return;
     }
     video.play();
-    video.addEventListener('ended', () => {
-      navigate('/game');
-    });
-    return () => {
-      video.removeEventListener('ended', () => {
-        navigate('/game');
-      });
-    };
   }, [navigate]);
   return (
     <div
@@ -34,7 +26,8 @@ export function Introduction() {
       }}>
       <video
         ref={videoRef}
-        src={story}
+        src={game}
+        loop
         css={{
           position: 'absolute',
           top: 0,
