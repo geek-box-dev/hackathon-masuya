@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import {css} from '@emotion/react';
 import {useEffect, useRef, useState} from 'react';
-import {Intro} from '../components/Intro';
+import {Play} from '../components/Play';
 
 // NOTE: WebSocket で受信したメッセージの状態
 type Status = 'notStart' | 'introduction' | 'play' | 'success' | 'end';
@@ -29,14 +29,18 @@ export function Follower() {
 
   return (
     <div css={screenStyle}>
-      <Intro />
+      <Play />
     </div>
   );
 }
 
 const screenStyle = css({
   display: 'flex',
-  // backgroundColor: 'red',
+  justifyContent: 'center',
+  alignItems: 'stretch',
   width: '100vw',
   height: '100vh',
+  overflowX: 'hidden',
+  backgroundImage:
+    'repeating-linear-gradient(90deg, #DE5511 0, #DE5511 80px, #1B9443 80px, #1B9443 160px)',
 });
