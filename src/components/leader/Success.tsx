@@ -1,9 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import {useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import success from '../../asset/success.mp4';
 
 export function Success() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) {
+      return;
+    }
+    video.play();
+  }, []);
   return (
     <div
       css={{
@@ -18,6 +25,8 @@ export function Success() {
       <video
         ref={videoRef}
         src={success}
+        muted // NOTE: ミュートにしておかないと、ブラウザ側のセキュリティポリシーにより自動再生しない（https://developer.chrome.com/blog/autoplay?hl=ja）
+        loop
         css={{
           position: 'absolute',
           top: 0,
