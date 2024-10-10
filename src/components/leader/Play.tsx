@@ -2,8 +2,8 @@
 import {css, keyframes} from '@emotion/react';
 import {useRef, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import balloon1 from '../asset/balloon1.png';
-import game from '../asset/game.mp4';
+import balloon1 from '../../asset/balloon1.png';
+import game from '../../asset/game.mp4';
 
 type BalloonProps = {
   id: number;
@@ -17,7 +17,7 @@ export type LeaderScreenProps = {
   changeState: (state: string) => void;
 };
 
-export function Playing({changeState}: LeaderScreenProps) {
+export function Play({changeState}: LeaderScreenProps) {
   const navigate = useNavigate();
   const [state, setState] = useState<LeaderScreenStatus>('standby');
   const videoRef = useRef<HTMLVideoElement>(null);

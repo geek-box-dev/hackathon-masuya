@@ -3,7 +3,7 @@ import {css} from '@emotion/react';
 import {useEffect, useRef, useState} from 'react';
 import Reward from '../component/Reward';
 import Standby from '../component/Standby';
-import {Play} from '../components/Play';
+import {Play} from '../components/follower/Play';
 
 // NOTE: WebSocket で受信したメッセージの状態
 type Status = 'standby' | 'introduction' | 'playing' | 'reward' | 'ended';

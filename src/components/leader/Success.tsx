@@ -1,6 +1,6 @@
-import '../App.css';
-import logo from '../logo.svg';
-import {LeaderScreenProps} from '../screen/Leader';
+import '../../App.css';
+import logo from '../../logo.svg';
+import {LeaderScreenProps} from '../../screen/Leader';
 
 export function Success({changeState}: LeaderScreenProps) {
   return (

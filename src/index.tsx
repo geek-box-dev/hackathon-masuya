@@ -10,12 +10,12 @@ const router = createBrowserRouter([
   {
     // NOTE: コンテンツ操作結果の反映画面（プロジェクタ投影画面）
     path: '/',
-    element: <Leader />,
+    element: <Follower />,
   },
   {
     // NOTE: コンテンツ操作の画面
-    path: '/follower',
-    element: <Follower />,
+    path: '/leader',
+    element: <Leader />,
   },
 ]);
 

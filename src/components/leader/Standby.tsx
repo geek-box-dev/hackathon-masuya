@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
-import start_bg_image from '../asset/start_bg_image.png';
-import {LeaderScreenProps} from '../screen/Leader';
+import start_bg_image from '../../asset/start_bg_image.png';
+import {LeaderScreenProps} from '../../screen/Leader';
 
 export function Standby({changeState}: LeaderScreenProps) {
   return (

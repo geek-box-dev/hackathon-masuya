@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import {useRef, useEffect} from 'react';
-import story from '../asset/story.mp4';
-import {LeaderScreenProps} from '../screen/Leader';
+import story from '../../asset/story.mp4';
+import {LeaderScreenProps} from '../../screen/Leader';
 
-export function IntroStory({changeState}: LeaderScreenProps) {
+export function Intro({changeState}: LeaderScreenProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     const video = videoRef.current;
