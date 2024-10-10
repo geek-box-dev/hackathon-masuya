@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import {css, keyframes} from '@emotion/react';
 import {FC, useCallback, useState} from 'react';
-import balloon1 from '../asset/balloon1.png';
-import char1 from '../asset/char1.png';
-import char2 from '../asset/char2.png';
+import balloon1 from '../../asset/balloon1.png';
+import char1 from '../../asset/char1.png';
+import char2 from '../../asset/char2.png';
 
 type BalloonProps = {
   id: number;

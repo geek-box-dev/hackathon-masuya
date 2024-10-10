@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import {css} from '@emotion/react';
-import {useEffect, useRef, useState} from 'react';
-import Reward from '../component/Reward';
-import Standby from '../component/Standby';
+import {useEffect, useRef, useState} from "react";
 import {Play} from '../components/follower/Play';
+import Standby from "../components/follower/Standby";
+import Reward from "../components/follower/Reward";
+import {Intro} from '../components/follower/Intro';
 
 // NOTE: WebSocket で受信したメッセージの状態
-type Status = 'standby' | 'introduction' | 'playing' | 'reward' | 'ended';
+type Status = 'standby' | 'introduction' | 'playing' | 'reward';
 
 export function Follower() {
-  const [state, setState] = useState<string>('standby');
+  const [state, setState] = useState<Status>('reward');
   const wsRef = useRef<WebSocket>();
 
   useEffect(() => {
@@ -18,9 +19,8 @@ export function Follower() {
       console.log('onMessage', event.data);
       // state 更新のメッセージかどうかの判定が必要
       if (event.data.startsWith('state:')) {
-        setState(event.data);
         const s = event.data.split(':')[1];
-        setState(s);
+        setState(s as Status);
       }
     }
     ws.addEventListener('message', onMessage);
@@ -31,17 +31,16 @@ export function Follower() {
     };
   }, []);
 
-  if (state === 'standby') {
-    return <Standby />;
-  }
-
-  if (state === 'reward') {
-    return <Reward />;
-  }
-
   return (
     <div css={screenStyle}>
-      <Play />
+      {
+        {
+          'standby': <Standby />,
+          'introduction': <Intro />,
+          'playing': <Play />,
+          'reward': <Reward />,
+        }[state as Status] || null
+      }
     </div>
   );
 }

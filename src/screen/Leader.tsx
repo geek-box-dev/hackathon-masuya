@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import {useState} from 'react';
-import {IntroStory} from '../components/IntroStory';
-import {Playing} from '../components/Playing';
-import {Standby} from '../components/Standby';
-import {Success} from '../components/Success';
+import {Intro} from '../components/leader/Intro';
+import {Play} from '../components/leader/Play';
+import {Standby} from '../components/leader/Standby';
+import {Success} from '../components/leader/Success';
 
 type LeaderScreenStatus = 'standby' | 'introduction' | 'playing' | 'success';
 
@@ -19,9 +19,9 @@ export function Leader() {
       case 'standby':
         return <Standby changeState={() => setState('introduction')} />;
       case 'introduction':
-        return <IntroStory changeState={() => setState('playing')} />;
+        return <Intro changeState={() => setState('playing')} />;
       case 'playing':
-        return <Playing changeState={() => setState('success')} />;
+        return <Play changeState={() => setState('success')} />;
       case 'success':
         return <Success changeState={() => setState('standby')} />;
       default:
