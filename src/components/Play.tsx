@@ -40,7 +40,7 @@ export const Play: FC = () => {
       <Balloon onClick={addBalloon} />
       <div
         css={{
-          display: 'inline-block',
+          display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
           gap: '10vh',

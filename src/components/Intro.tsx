@@ -36,8 +36,6 @@ const containerStyle = css({
   width: '100%',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundImage:
-    'repeating-linear-gradient(90deg, #DE5511 0, #DE5511 80px, #1B9443 80px, #1B9443 160px)',
 });
 
 const floatAnimation = keyframes`
