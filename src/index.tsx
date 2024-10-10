@@ -4,11 +4,10 @@ import './index.css';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {Contents} from './screen/Contents';
+import {Follower} from './screen/Follower';
 import {Game} from './screen/Game';
 import {Introduction} from './screen/Introduction';
 import {Success} from './screen/Success';
-import {Follower} from './screen/Follower';
 
 const router = createBrowserRouter([
   {
@@ -22,8 +21,8 @@ const router = createBrowserRouter([
   },
   {
     // NOTE: コンテンツ操作の画面
-    path: '/contents',
-    element: <Contents />,
+    path: '/follower',
+    element: <Follower />,
   },
   {
     // NOTE: コンテンツ終了後の画面
@@ -35,10 +34,6 @@ const router = createBrowserRouter([
     path: '/game',
     element: <Game />,
   },
-  {
-    path: '/follower',
-    element: <Follower />,
-  }
 ]);
 
 const root = ReactDOM.createRoot(
