@@ -10,7 +10,7 @@ import {Intro} from '../components/follower/Intro';
 type Status = 'standby' | 'introduction' | 'playing' | 'reward';
 
 export function Follower() {
-  const [state, setState] = useState<Status>('reward');
+  const [state, setState] = useState<Status>('standby');
   const wsRef = useRef<WebSocket>();
 
   useEffect(() => {
@@ -37,7 +37,9 @@ export function Follower() {
         {
           'standby': <Standby />,
           'introduction': <Intro />,
-          'playing': <Play />,
+          'playing': <Play onTapBalloon={() => {
+            wsRef.current?.send('SENDMSG Leader addBalloon');
+          }} />,
           'reward': <Reward />,
         }[state as Status] || null
       }

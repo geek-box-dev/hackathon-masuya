@@ -11,7 +11,7 @@ type BalloonProps = {
   imageSrc: string;
 };
 
-export const Play: FC = () => {
+export const Play: FC<{onTapBalloon?: () => void}> = ({onTapBalloon}) => {
   const [balloons, setBalloons] = useState<BalloonProps[]>([]);
   const addBalloon = useCallback(() => {
     const newBalloon: BalloonProps = {
@@ -20,10 +20,11 @@ export const Play: FC = () => {
       imageSrc: balloon1,
     };
     setBalloons(prev => [...prev, newBalloon]);
+    onTapBalloon?.();
     setTimeout(() => {
       setBalloons(prev => prev.filter(b => b.id !== newBalloon.id));
     }, 1500);
-  }, []);
+  }, [onTapBalloon]);
   return (
     <div css={containerStyle}>
       <p
