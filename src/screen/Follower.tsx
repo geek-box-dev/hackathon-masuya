@@ -1,4 +1,8 @@
-import {useEffect, useRef, useState} from "react";
+/** @jsxImportSource @emotion/react */
+import {css} from '@emotion/react';
+import {useEffect, useRef, useState} from 'react';
+
+type Status = 'notStart' | 'introduction' | 'play' | 'success' | 'end';
 
 export function Follower() {
   const [state, setState] = useState<string>('standby');
@@ -9,7 +13,7 @@ export function Follower() {
     function onMessage(event: MessageEvent<string>) {
       console.log('onMessage', event.data);
       // state 更新のメッセージかどうかの判定が必要
-      if(event.data.startsWith('state:')){
+      if (event.data.startsWith('state:')) {
         setState(event.data);
       }
     }
@@ -21,10 +25,27 @@ export function Follower() {
     };
   }, []);
 
-    return (
-        <div>
-            <h1>利用者向けコンテンツ</h1>
-            <p>現在の状態: {state}</p>
-        </div>
-    )
+  return (
+    <div css={screenStyle}>
+      <div css={containerStyle}>
+        <h1>利用者向けコンテンツ</h1>
+        <p>現在の状態: {state}</p>
+      </div>
+    </div>
+  );
 }
+
+const screenStyle = css({
+  display: 'flex',
+  backgroundColor: 'red',
+  width: '100vw',
+  height: '100vh',
+});
+
+const containerStyle = css({
+  display: 'flex',
+  flexDirection: 'column',
+  flex: 1,
+  width: 'full',
+  alignItems: 'center',
+});
