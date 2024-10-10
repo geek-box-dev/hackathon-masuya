@@ -8,6 +8,7 @@ import {Contents} from './screen/Contents';
 import {Game} from './screen/Game';
 import {Introduction} from './screen/Introduction';
 import {Success} from './screen/Success';
+import {Follower} from './screen/Follower';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
     path: '/game',
     element: <Game />,
   },
+  {
+    path: '/follower',
+    element: <Follower />,
+  }
 ]);
 
 const root = ReactDOM.createRoot(
