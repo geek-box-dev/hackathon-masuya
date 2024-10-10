@@ -2,37 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Follower} from './screen/Follower';
-import {Game} from './screen/Game';
-import {Introduction} from './screen/Introduction';
-import {Success} from './screen/Success';
+import {Leader} from './screen/Leader';
 
 const router = createBrowserRouter([
   {
+    // NOTE: コンテンツ操作結果の反映画面（プロジェクタ投影画面）
     path: '/',
-    element: <App />,
-  },
-  {
-    // NOTE: 導入ストーリーの画面
-    path: '/introduction',
-    element: <Introduction />,
+    element: <Leader />,
   },
   {
     // NOTE: コンテンツ操作の画面
     path: '/follower',
     element: <Follower />,
-  },
-  {
-    // NOTE: コンテンツ終了後の画面
-    path: '/success',
-    element: <Success />,
-  },
-  {
-    // NOTE: コンテンツ操作結果の反映画面（プロジェクタ投影画面）
-    path: '/game',
-    element: <Game />,
   },
 ]);
 

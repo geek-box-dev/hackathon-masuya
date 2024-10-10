@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import {css} from '@emotion/react';
+import {useEffect, useRef, useState} from 'react';
+import Reward from '../component/Reward';
+import Standby from '../component/Standby';
 import {Play} from '../components/Play';
-import {useEffect, useRef, useState} from "react";
-import Standby from "../component/Standby";
-import Reward from "../component/Reward";
 
 // NOTE: WebSocket で受信したメッセージの状態
-type Status = 'notStart' | 'introduction' | 'play' | 'success' | 'end';
+type Status = 'standby' | 'introduction' | 'playing' | 'reward' | 'ended';
 
 export function Follower() {
   const [state, setState] = useState<string>('standby');
@@ -32,15 +32,11 @@ export function Follower() {
   }, []);
 
   if (state === 'standby') {
-    return (
-      <Standby />
-    )
+    return <Standby />;
   }
 
   if (state === 'reward') {
-    return (
-      <Reward />
-    )
+    return <Reward />;
   }
 
   return (

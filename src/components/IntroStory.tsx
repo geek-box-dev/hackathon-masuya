@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import {useRef, useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
 import story from '../asset/story.mp4';
+import {LeaderScreenProps} from '../screen/Leader';
 
-export function Introduction() {
-  const navigate = useNavigate();
+export function IntroStory({changeState}: LeaderScreenProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     const video = videoRef.current;
@@ -13,14 +12,14 @@ export function Introduction() {
     }
     video.play();
     video.addEventListener('ended', () => {
-      navigate('/game');
+      changeState();
     });
     return () => {
       video.removeEventListener('ended', () => {
-        navigate('/game');
+        changeState();
       });
     };
-  }, [navigate]);
+  }, [changeState]);
   return (
     <div
       css={{

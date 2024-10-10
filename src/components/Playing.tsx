@@ -11,8 +11,15 @@ type BalloonProps = {
   imageSrc: string;
 };
 
-export function Game() {
+type LeaderScreenStatus = 'standby' | 'introduction' | 'playing' | 'success';
+
+export type LeaderScreenProps = {
+  changeState: (state: string) => void;
+};
+
+export function Playing({changeState}: LeaderScreenProps) {
   const navigate = useNavigate();
+  const [state, setState] = useState<LeaderScreenStatus>('standby');
   const videoRef = useRef<HTMLVideoElement>(null);
   const [balloons, setBalloons] = useState<BalloonProps[]>([]);
   useEffect(() => {
