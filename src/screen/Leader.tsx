@@ -5,6 +5,7 @@ import {Play} from '../components/leader/Play';
 import {Standby} from '../components/leader/Standby';
 import {Success} from '../components/leader/Success';
 
+// NOTE: WebSocket で受信したリーダ側のメッセージの状態
 type LeaderScreenStatus = 'standby' | 'introduction' | 'playing' | 'success';
 
 export type LeaderScreenProps = {
@@ -46,20 +47,33 @@ export function Leader() {
   const Screen = ({state}: {state: LeaderScreenStatus}) => {
     switch (state) {
       case 'standby':
-        return <Standby changeState={() => {
-          setState('introduction');
-          wsRef.current?.send('SENDMSG Followers state:introduction')
-        }} />;
+        return (
+          <Standby
+            changeState={() => {
+              setState('introduction');
+              wsRef.current?.send('SENDMSG Followers state:introduction');
+            }}
+          />
+        );
       case 'introduction':
-        return <Intro changeState={() => {
-          setState('playing');
-          wsRef.current?.send('SENDMSG Followers state:playing')
-        }} />;
+        return (
+          <Intro
+            changeState={() => {
+              setState('playing');
+              wsRef.current?.send('SENDMSG Followers state:playing');
+            }}
+          />
+        );
       case 'playing':
-        return <Play ref={playingRef} changeState={() => {
-          setState('success');
-          wsRef.current?.send('SENDMSG Followers state:reward')
-        }} />;
+        return (
+          <Play
+            ref={playingRef}
+            changeState={() => {
+              setState('success');
+              wsRef.current?.send('SENDMSG Followers state:reward');
+            }}
+          />
+        );
       case 'success':
         return <Success changeState={() => setState('standby')} />;
       default:

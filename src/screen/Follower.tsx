@@ -1,16 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import {css} from '@emotion/react';
-import {useEffect, useRef, useState} from "react";
-import {Play} from '../components/follower/Play';
-import Standby from "../components/follower/Standby";
-import Reward from "../components/follower/Reward";
+import {useEffect, useRef, useState} from 'react';
 import {Intro} from '../components/follower/Intro';
+import {Play} from '../components/follower/Play';
+import Reward from '../components/follower/Reward';
+import Standby from '../components/follower/Standby';
 
-// NOTE: WebSocket で受信したメッセージの状態
-type Status = 'standby' | 'introduction' | 'playing' | 'reward';
+// NOTE: WebSocket で受信したフォロワー側のメッセージの状態
+type FollowerScreenStatus = 'standby' | 'introduction' | 'playing' | 'reward';
 
 export function Follower() {
-  const [state, setState] = useState<Status>('standby');
+  const [state, setState] = useState<FollowerScreenStatus>('standby');
   const wsRef = useRef<WebSocket>();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export function Follower() {
       // state 更新のメッセージかどうかの判定が必要
       if (event.data.startsWith('state:')) {
         const s = event.data.split(':')[1];
-        setState(s as Status);
+        setState(s as FollowerScreenStatus);
       }
     }
     ws.addEventListener('message', onMessage);
@@ -31,18 +31,30 @@ export function Follower() {
     };
   }, []);
 
+  const Screen = ({state}: {state: FollowerScreenStatus}) => {
+    switch (state) {
+      case 'standby':
+        return <Standby />;
+      case 'introduction':
+        return <Intro />;
+      case 'playing':
+        return (
+          <Play
+            onTapBalloon={() => {
+              wsRef.current?.send('SENDMSG Leader addBalloon');
+            }}
+          />
+        );
+      case 'reward':
+        return <Reward />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div css={screenStyle}>
-      {
-        {
-          'standby': <Standby />,
-          'introduction': <Intro />,
-          'playing': <Play onTapBalloon={() => {
-            wsRef.current?.send('SENDMSG Leader addBalloon');
-          }} />,
-          'reward': <Reward />,
-        }[state as Status] || null
-      }
+      <Screen state={state} />
     </div>
   );
 }
