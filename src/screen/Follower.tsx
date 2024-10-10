@@ -1,7 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import {css} from '@emotion/react';
-import {useEffect, useRef, useState} from 'react';
 import {Play} from '../components/Play';
+import {useEffect, useRef, useState} from "react";
+import Standby from "../component/Standby";
+import Reward from "../component/Reward";
 
 // NOTE: WebSocket で受信したメッセージの状態
 type Status = 'notStart' | 'introduction' | 'play' | 'success' | 'end';
@@ -17,6 +19,8 @@ export function Follower() {
       // state 更新のメッセージかどうかの判定が必要
       if (event.data.startsWith('state:')) {
         setState(event.data);
+        const s = event.data.split(':')[1];
+        setState(s);
       }
     }
     ws.addEventListener('message', onMessage);
@@ -26,6 +30,18 @@ export function Follower() {
       ws.removeEventListener('message', onMessage);
     };
   }, []);
+
+  if (state === 'standby') {
+    return (
+      <Standby />
+    )
+  }
+
+  if (state === 'reward') {
+    return (
+      <Reward />
+    )
+  }
 
   return (
     <div css={screenStyle}>
