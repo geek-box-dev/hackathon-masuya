@@ -23,6 +23,11 @@ export function Leader() {
       if (event.data === 'addBalloon') {
         playingRef.current?.addBalloon();
       }
+
+      if (event.data.startsWith('state:success')) {
+        const s = event.data.split(':')[1];
+        setState(s as LeaderScreenStatus);
+      }
     }
     function onOpen() {
       ws.send('CHROLE Leader');
