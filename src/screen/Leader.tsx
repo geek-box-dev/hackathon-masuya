@@ -40,7 +40,7 @@ export function Leader() {
       }
 
       if (command === 'SENDMSG' && body === 'state:success') {
-        const s = event.data.split(':')[1];
+        const s = body.split(':')[1];
         setState(s as LeaderScreenStatus);
       }
     }

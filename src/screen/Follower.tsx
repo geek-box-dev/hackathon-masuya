@@ -24,14 +24,15 @@ export function Follower() {
     const ws = new WebSocket(process.env.REACT_APP_WSS_URL ?? '');
     function onMessage(event: MessageEvent<string>) {
       const {command, body, success}: Message = JSON.parse(event.data);
+      console.log('received', {command, body, success});
 
       if (!success) {
         console.error('failed to command', {command, body});
         return;
       }
 
-      if (command === 'SENDMSG' && body === 'state:success') {
-        const s = event.data.split(':')[1];
+      if (command === 'SENDMSG' && body.startsWith('state:')) {
+        const s = body.split(':')[1];
         setState(s as FollowerScreenStatus);
         return;
       }
