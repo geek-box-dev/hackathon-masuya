@@ -8,6 +8,13 @@ import {Success} from '../components/leader/Success';
 // NOTE: WebSocket で受信したリーダ側のメッセージの状態
 type LeaderScreenStatus = 'standby' | 'introduction' | 'playing' | 'success';
 
+// NOTE: websocket 送信されてくるメッセージの型
+interface Message {
+  command: "CONNECT" | "SENDMSG" | "SET" | "GET" | "CHROLE";
+  body: string;
+  success: boolean;
+}
+
 export type LeaderScreenProps = {
   changeState: () => void;
 };
@@ -20,12 +27,19 @@ export function Leader() {
   useEffect(() => {
     const ws = new WebSocket(process.env.REACT_APP_WSS_URL ?? '');
     function onMessage(event: MessageEvent<string>) {
-      console.log('onMessage', event.data);
-      if (event.data === 'addBalloon') {
-        playingRef.current?.addBalloon();
+      const {command, body, success}: Message = JSON.parse(event.data);
+
+      if (!success) {
+        console.error('failed to command', {command, body});
+        return;
       }
 
-      if (event.data.startsWith('state:success')) {
+      if (command === 'SENDMSG' && body === 'balloon:add') {
+        playingRef.current?.addBalloon();
+        return;
+      }
+
+      if (command === 'SENDMSG' && body === 'state:success') {
         const s = event.data.split(':')[1];
         setState(s as LeaderScreenStatus);
       }

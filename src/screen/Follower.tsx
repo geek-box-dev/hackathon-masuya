@@ -9,6 +9,13 @@ import Standby from '../components/follower/Standby';
 // NOTE: WebSocket で受信したフォロワー側のメッセージの状態
 type FollowerScreenStatus = 'standby' | 'introduction' | 'playing' | 'reward';
 
+// NOTE: websocket 送信されてくるメッセージの型
+interface Message {
+  command: "CONNECT" | "SENDMSG" | "SET" | "GET" | "CHROLE";
+  body: string;
+  success: boolean;
+}
+
 export function Follower() {
   const [state, setState] = useState<FollowerScreenStatus>('standby');
   const wsRef = useRef<WebSocket>();
@@ -16,11 +23,17 @@ export function Follower() {
   useEffect(() => {
     const ws = new WebSocket(process.env.REACT_APP_WSS_URL ?? '');
     function onMessage(event: MessageEvent<string>) {
-      console.log('onMessage', event.data);
-      // state 更新のメッセージかどうかの判定が必要
-      if (event.data.startsWith('state:')) {
+      const {command, body, success}: Message = JSON.parse(event.data);
+
+      if (!success) {
+        console.error('failed to command', {command, body});
+        return;
+      }
+
+      if (command === 'SENDMSG' && body === 'state:success') {
         const s = event.data.split(':')[1];
         setState(s as FollowerScreenStatus);
+        return;
       }
     }
     ws.addEventListener('message', onMessage);
@@ -41,7 +54,7 @@ export function Follower() {
         return (
           <Play
             onTapBalloon={() => {
-              wsRef.current?.send('SENDMSG Leader addBalloon');
+              wsRef.current?.send('SENDMSG Leader balloon:add');
             }}
           />
         );
