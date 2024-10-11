@@ -1,6 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import {css, keyframes} from '@emotion/react';
-import {useRef, useEffect, useState, forwardRef, useImperativeHandle} from 'react';
+import {
+  useRef,
+  useEffect,
+  useState,
+  forwardRef,
+  useImperativeHandle,
+} from 'react';
 import {useNavigate} from 'react-router-dom';
 import balloon1 from '../../asset/balloon1.png';
 import game from '../../asset/game.mp4';
@@ -10,8 +16,6 @@ type BalloonProps = {
   xPosition: number;
   imageSrc: string;
 };
-
-type LeaderScreenStatus = 'standby' | 'introduction' | 'playing' | 'success';
 
 export type LeaderScreenProps = {
   changeState: (state: string) => void;
@@ -24,7 +28,6 @@ export const Play = forwardRef<
   LeaderScreenProps
 >(({changeState}: LeaderScreenProps, ref) => {
   const navigate = useNavigate();
-  const [state, setState] = useState<LeaderScreenStatus>('standby');
   const videoRef = useRef<HTMLVideoElement>(null);
   const [balloons, setBalloons] = useState<BalloonProps[]>([]);
 
@@ -106,7 +109,6 @@ export const Play = forwardRef<
     </div>
   );
 });
-
 
 const Balloon: React.FC<BalloonProps> = ({xPosition, imageSrc}) => {
   return (
