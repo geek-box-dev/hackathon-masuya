@@ -40,6 +40,7 @@ export function Leader() {
       }
 
       if (command === 'SENDMSG' && body === 'state:success') {
+        wsRef.current?.send('SENDMSG Followers state:reward');
         const s = body.split(':')[1];
         setState(s as LeaderScreenStatus);
       }

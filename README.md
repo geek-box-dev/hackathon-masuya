@@ -18,4 +18,4 @@ Reactの環境を構築後にプロジェクトのトップで以下のコマン
 このリポジトリでは以下のサードパーティライブラリを使用しています。
 Material UI（リッチなUIの実装が容易に可能）： [Material UI documentation](https://mui.com/material-ui/).
 Emotion（React用のcssライブラリ）： [Emotion documentation](https://emotion.sh/docs/introduction).
-React Router（React用ページルーティング）： [Emotion documentation](https://reactrouter.com/en/main).
+React Router（React用ページルーティング）： [React Router documentation](https://reactrouter.com/en/main).
