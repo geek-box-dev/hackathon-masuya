@@ -107,7 +107,7 @@ const Balloon: FC<{ index: number, onClick: () => void }> = ({ index, onClick })
         alt="balloon"
         css={{
           animation: `${balloonAnimation} 3s linear infinite`,
-          width: '40vh',
+          width: '35vh',
           height: '50vh',
         }}
       />
@@ -161,7 +161,7 @@ const floatingBalloonAnimation = keyframes`
 const floatingBalloonStyle = css`
   position: absolute;
   bottom: 0;
-  width: 30vq;
+  width: 30vw;
   height: 30vh;
   border-radius: 50%;
   animation: ${floatingBalloonAnimation} 1.5s linear infinite;
