@@ -1,9 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import {css, keyframes} from '@emotion/react';
-import {FC, useCallback, useState} from 'react';
-import balloon1 from '../../asset/balloon1.png';
+import { css, keyframes } from '@emotion/react';
+import { FC, useCallback, useState } from 'react';
+import balloon1 from '../../asset/balloon_1.png';
+import balloon2 from '../../asset/balloon_2.png';
+import balloon3 from '../../asset/balloon_3.png';
+import balloon4 from '../../asset/balloon_4.png';
+import balloon5 from '../../asset/balloon_5.png';
+import balloon6 from '../../asset/balloon_6.png';
+import balloon7 from '../../asset/balloon_7.png';
 import char1 from '../../asset/char1.png';
 import char2 from '../../asset/char2.png';
+import { getRandomIndex } from '../../utils/getRandom';
 
 type BalloonProps = {
   id: number;
@@ -11,13 +18,24 @@ type BalloonProps = {
   imageSrc: string;
 };
 
-export const Play: FC<{onTapBalloon?: () => void}> = ({onTapBalloon}) => {
+const balloonImages = [
+  balloon1,
+  balloon2,
+  balloon3,
+  balloon4,
+  balloon5,
+  balloon6,
+  balloon7,
+];
+
+export const Play: FC<{ onTapBalloon?: () => void }> = ({ onTapBalloon }) => {
   const [balloons, setBalloons] = useState<BalloonProps[]>([]);
   const addBalloon = useCallback(() => {
+    const balloonIndex = getRandomIndex(balloonImages.length);
     const newBalloon: BalloonProps = {
       id: Date.now(),
       xPosition: Math.random() * 100,
-      imageSrc: balloon1,
+      imageSrc: balloonImages[balloonIndex],
     };
     setBalloons(prev => [...prev, newBalloon]);
     onTapBalloon?.();
@@ -68,14 +86,14 @@ export const Play: FC<{onTapBalloon?: () => void}> = ({onTapBalloon}) => {
           key={balloon.id}
           id={balloon.id}
           xPosition={balloon.xPosition}
-          imageSrc={balloon1}
+          imageSrc={balloon.imageSrc}
         />
       ))}
     </div>
   );
 };
 
-const Balloon: FC<{onClick: () => void}> = ({onClick}) => {
+const Balloon: FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
     <button
       onClick={onClick}
@@ -84,11 +102,11 @@ const Balloon: FC<{onClick: () => void}> = ({onClick}) => {
         backgroundColor: 'transparent',
       }}>
       <img
-        src={balloon1}
+        src={balloonImages[getRandomIndex(balloonImages.length)]}
         alt="balloon"
         css={{
           animation: `${balloonAnimation} 3s linear infinite`,
-          width: '50vh',
+          width: '40vh',
           height: '50vh',
         }}
       />
@@ -96,7 +114,7 @@ const Balloon: FC<{onClick: () => void}> = ({onClick}) => {
   );
 };
 
-const FloatingBalloon: React.FC<BalloonProps> = ({xPosition, imageSrc}) => {
+const FloatingBalloon: React.FC<BalloonProps> = ({ xPosition, imageSrc }) => {
   return (
     <img
       src={imageSrc}

@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import {css, keyframes} from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import {
   useRef,
   useEffect,
@@ -7,15 +7,32 @@ import {
   forwardRef,
   useImperativeHandle,
 } from 'react';
-import {useNavigate} from 'react-router-dom';
-import balloon1 from '../../asset/balloon1.png';
+import { useNavigate } from 'react-router-dom';
+import balloon1 from '../../asset/balloon_1.png';
+import balloon2 from '../../asset/balloon_2.png';
+import balloon3 from '../../asset/balloon_3.png';
+import balloon4 from '../../asset/balloon_4.png';
+import balloon5 from '../../asset/balloon_5.png';
+import balloon6 from '../../asset/balloon_6.png';
+import balloon7 from '../../asset/balloon_7.png';
 import game from '../../asset/game.mp4';
+import { getRandomIndex } from '../../utils/getRandom';
 
 type BalloonProps = {
   id: number;
   xPosition: number;
   imageSrc: string;
 };
+
+const balloonImages = [
+  balloon1,
+  balloon2,
+  balloon3,
+  balloon4,
+  balloon5,
+  balloon6,
+  balloon7,
+];
 
 export type LeaderScreenProps = {
   changeState: (state: string) => void;
@@ -26,7 +43,7 @@ export const Play = forwardRef<
     addBalloon: () => void;
   },
   LeaderScreenProps
->(({changeState}: LeaderScreenProps, ref) => {
+>(({ changeState }: LeaderScreenProps, ref) => {
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [balloons, setBalloons] = useState<BalloonProps[]>([]);
@@ -41,10 +58,11 @@ export const Play = forwardRef<
 
   // addBalloon関数をref経由で呼び出せるようにする
   const addBalloon = () => {
+    const balloonIndex = getRandomIndex(balloonImages.length);
     const newBalloon: BalloonProps = {
       id: Date.now(),
       xPosition: Math.random() * 100,
-      imageSrc: balloon1,
+      imageSrc: balloonImages[balloonIndex],
     };
     setBalloons(prev => [...prev, newBalloon]);
 
@@ -100,17 +118,15 @@ export const Play = forwardRef<
             key={balloon.id}
             id={balloon.id}
             xPosition={balloon.xPosition}
-            imageSrc={balloon1}
+            imageSrc={balloon.imageSrc}
           />
         ))}
       </div>
-      {/*TODO: WebSocketのイベントを受けてaddBalloonを実行する */}
-      {/* <button onClick={addBalloon}>飛ばす</button> */}
     </div>
   );
 });
 
-const Balloon: React.FC<BalloonProps> = ({xPosition, imageSrc}) => {
+const Balloon: React.FC<BalloonProps> = ({ xPosition, imageSrc }) => {
   return (
     <img
       src={imageSrc}
@@ -136,7 +152,7 @@ const floatAnimation = keyframes`
 const balloonStyle = css`
   position: absolute;
   bottom: 0;
-  width: 200px;
+  width: 150px;
   height: 200px;
   border-radius: 50%;
   animation: ${floatAnimation} 3s linear infinite;

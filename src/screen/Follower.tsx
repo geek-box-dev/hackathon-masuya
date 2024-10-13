@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import {css} from '@emotion/react';
-import {useEffect, useRef, useState} from 'react';
-import {Intro} from '../components/follower/Intro';
-import {Play} from '../components/follower/Play';
+import { css } from '@emotion/react';
+import { useEffect, useRef, useState } from 'react';
+import { Intro } from '../components/follower/Intro';
+import { Play } from '../components/follower/Play';
 import Reward from '../components/follower/Reward';
 import Standby from '../components/follower/Standby';
 
@@ -23,11 +23,11 @@ export function Follower() {
   useEffect(() => {
     const ws = new WebSocket(process.env.REACT_APP_WSS_URL ?? '');
     function onMessage(event: MessageEvent<string>) {
-      const {command, body, success}: Message = JSON.parse(event.data);
-      console.log('received', {command, body, success});
+      const { command, body, success }: Message = JSON.parse(event.data);
+      console.log('received', { command, body, success });
 
       if (!success) {
-        console.error('failed to command', {command, body});
+        console.error('failed to command', { command, body });
         return;
       }
 
@@ -45,7 +45,7 @@ export function Follower() {
     };
   }, []);
 
-  const Screen = ({state}: {state: FollowerScreenStatus}) => {
+  const Screen = ({ state }: { state: FollowerScreenStatus }) => {
     switch (state) {
       case 'standby':
         return <Standby />;
