@@ -22,6 +22,7 @@ type BalloonProps = {
   id: number;
   xPosition: number;
   imageSrc: string;
+  sizeIndex: number;
 };
 
 const balloonImages = [
@@ -63,6 +64,7 @@ export const Play = forwardRef<
       id: Date.now(),
       xPosition: Math.random() * 100,
       imageSrc: balloonImages[balloonIndex],
+      sizeIndex: getRandomIndex(3),
     };
     setBalloons(prev => [...prev, newBalloon]);
 
@@ -119,6 +121,7 @@ export const Play = forwardRef<
             id={balloon.id}
             xPosition={balloon.xPosition}
             imageSrc={balloon.imageSrc}
+            sizeIndex={balloon.sizeIndex}
           />
         ))}
       </div>
@@ -126,13 +129,13 @@ export const Play = forwardRef<
   );
 });
 
-const Balloon: React.FC<BalloonProps> = ({ xPosition, imageSrc }) => {
+const Balloon: React.FC<BalloonProps> = ({ xPosition, imageSrc, sizeIndex }) => {
   return (
     <img
       src={imageSrc}
       alt="balloon"
       css={css`
-        ${balloonStyle};
+        ${sizeIndex === 0 ? balloonStyle_small : sizeIndex === 1 ? balloonStyle_medium : balloonStyle_large};
         left: ${xPosition}%;
         --balloon-x: ${Math.random() * 40 - 20}%;
       `}
@@ -149,11 +152,27 @@ const floatAnimation = keyframes`
   }
 `;
 
-const balloonStyle = css`
+const balloonStyle_small = css`
+  position: absolute;
+  bottom: 0;
+  width: 100px;
+  height: 150px;
+  border-radius: 50%;
+  animation: ${floatAnimation} 3s linear infinite;
+`;
+const balloonStyle_medium = css`
   position: absolute;
   bottom: 0;
   width: 150px;
   height: 200px;
+  border-radius: 50%;
+  animation: ${floatAnimation} 3s linear infinite;
+`;
+const balloonStyle_large = css`
+  position: absolute;
+  bottom: 0;
+  width: 250px;
+  height: 350px;
   border-radius: 50%;
   animation: ${floatAnimation} 3s linear infinite;
 `;
