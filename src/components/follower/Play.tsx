@@ -161,7 +161,7 @@ const floatingBalloonAnimation = keyframes`
 const floatingBalloonStyle = css`
   position: absolute;
   bottom: 0;
-  width: 30vw;
+  width: 40vw;
   height: 30vh;
   border-radius: 50%;
   animation: ${floatingBalloonAnimation} 1.5s linear infinite;

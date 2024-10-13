@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import {useEffect, useRef, useState} from 'react';
-import {Intro} from '../components/leader/Intro';
-import {Play} from '../components/leader/Play';
-import {Standby} from '../components/leader/Standby';
-import {Success} from '../components/leader/Success';
+import { useEffect, useRef, useState } from 'react';
+import { Intro } from '../components/leader/Intro';
+import { Play } from '../components/leader/Play';
+import { Standby } from '../components/leader/Standby';
+import { Success } from '../components/leader/Success';
 
 // NOTE: WebSocket で受信したリーダ側のメッセージの状態
 type LeaderScreenStatus = 'standby' | 'introduction' | 'playing' | 'success';
@@ -22,15 +22,15 @@ export type LeaderScreenProps = {
 export function Leader() {
   const [state, setState] = useState<LeaderScreenStatus>('standby');
   const wsRef = useRef<WebSocket>();
-  const playingRef = useRef<{addBalloon: () => void}>(null);
+  const playingRef = useRef<{ addBalloon: () => void }>(null);
 
   useEffect(() => {
     const ws = new WebSocket(process.env.REACT_APP_WSS_URL ?? '');
     function onMessage(event: MessageEvent<string>) {
-      const {command, body, success}: Message = JSON.parse(event.data);
+      const { command, body, success }: Message = JSON.parse(event.data);
 
       if (!success) {
-        console.error('failed to command', {command, body});
+        console.error('failed to command', { command, body });
         return;
       }
 
@@ -59,7 +59,7 @@ export function Leader() {
     };
   }, []);
 
-  const Screen = ({state}: {state: LeaderScreenStatus}) => {
+  const Screen = ({ state }: { state: LeaderScreenStatus }) => {
     switch (state) {
       case 'standby':
         return (

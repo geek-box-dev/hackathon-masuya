@@ -145,10 +145,10 @@ const Balloon: React.FC<BalloonProps> = ({ xPosition, imageSrc, sizeIndex }) => 
 
 const floatAnimation = keyframes`
   0% {
-    transform: translateY(100vh) translateX(0);
+    transform: translateY(100vh);
   }
   100% {
-    transform: translateY(-100vh) translateX(var(--balloon-x));
+    transform: translateY(-100vh);
   }
 `;
 
