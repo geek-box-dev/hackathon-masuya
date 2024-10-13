@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css, keyframes } from '@emotion/react';
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useMemo, useState } from 'react';
 import balloon1 from '../../asset/balloon_1.png';
 import balloon2 from '../../asset/balloon_2.png';
 import balloon3 from '../../asset/balloon_3.png';
@@ -30,6 +30,7 @@ const balloonImages = [
 
 export const Play: FC<{ onTapBalloon?: () => void }> = ({ onTapBalloon }) => {
   const [balloons, setBalloons] = useState<BalloonProps[]>([]);
+  const balloonImageIndex = useMemo(() => getRandomIndex(balloonImages.length), []);
   const addBalloon = useCallback(() => {
     const balloonIndex = getRandomIndex(balloonImages.length);
     const newBalloon: BalloonProps = {
@@ -56,7 +57,7 @@ export const Play: FC<{ onTapBalloon?: () => void }> = ({ onTapBalloon }) => {
         <br />
         風船を飛ばそう!!
       </p>
-      <Balloon onClick={addBalloon} />
+      <Balloon index={balloonImageIndex} onClick={addBalloon} />
       <div
         css={{
           display: 'flex',
@@ -93,7 +94,7 @@ export const Play: FC<{ onTapBalloon?: () => void }> = ({ onTapBalloon }) => {
   );
 };
 
-const Balloon: FC<{ onClick: () => void }> = ({ onClick }) => {
+const Balloon: FC<{ index: number, onClick: () => void }> = ({ index, onClick }) => {
   return (
     <button
       onClick={onClick}
@@ -102,7 +103,7 @@ const Balloon: FC<{ onClick: () => void }> = ({ onClick }) => {
         backgroundColor: 'transparent',
       }}>
       <img
-        src={balloonImages[getRandomIndex(balloonImages.length)]}
+        src={balloonImages[index]}
         alt="balloon"
         css={{
           animation: `${balloonAnimation} 3s linear infinite`,
