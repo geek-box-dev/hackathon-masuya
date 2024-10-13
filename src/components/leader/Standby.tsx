@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
+import start from "../../asset/start.png";
 import start_bg_image from '../../asset/start_bg_image.png';
-import {LeaderScreenProps} from '../../screen/Leader';
+import { LeaderScreenProps } from '../../screen/Leader';
 
-export function Standby({changeState}: LeaderScreenProps) {
+export function Standby({ changeState }: LeaderScreenProps) {
   return (
     <div
       css={{
@@ -39,14 +39,30 @@ export function Standby({changeState}: LeaderScreenProps) {
           right: 0,
           margin: 'auto',
           backgroundColor: 'transparent',
+          height: '25vh',
+          width: '20vw',
+          border: "none",
         }}>
-        <PlayCircleFilledWhiteOutlinedIcon
-          sx={{
-            height: '25vh',
-            width: '25vw',
-            color: 'white',
-          }}
-        />
+        <div
+          css={{
+            display: 'flex',
+            alignSelf: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
+          }}>
+          <img
+            src={start}
+            css={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              zIndex: 1,
+            }}
+          />
+        </div>
       </button>
     </div>
   );

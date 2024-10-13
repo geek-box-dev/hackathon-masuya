@@ -53,9 +53,9 @@ export const Play: FC<{ onTapBalloon?: () => void }> = ({ onTapBalloon }) => {
           textAlign: 'center',
           color: 'white',
         }}>
-        風船を押して
+        がめんをタップして
         <br />
-        風船を飛ばそう!!
+        ふうせんをおくろう!!
       </p>
       <Balloon index={balloonImageIndex} onClick={addBalloon} />
       <div
