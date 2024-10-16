@@ -67,8 +67,9 @@ export const Play = forwardRef<
       imageSrc: balloonImages[balloonIndex],
       sizeIndex: getRandomIndex(3),
     };
-    setBalloons(prev => [...prev, newBalloon]);
-
+    if (balloons.length < 50) {
+      setBalloons(prev => [...prev, newBalloon]);
+    }
     setTimeout(() => {
       setBalloons(prev => prev.filter(b => b.id !== newBalloon.id));
     }, 3000);
@@ -78,7 +79,6 @@ export const Play = forwardRef<
   useImperativeHandle(ref, () => ({
     addBalloon,
   }));
-  console.log('Play', balloons);
   return (
     <div>
       <div
