@@ -8,6 +8,7 @@ import {
   useImperativeHandle,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import balloon1 from '../../asset/balloon_1.png';
 import balloon2 from '../../asset/balloon_2.png';
 import balloon3 from '../../asset/balloon_3.png';
@@ -19,7 +20,7 @@ import game from '../../asset/game.mp4';
 import { getRandomIndex } from '../../utils/getRandom';
 
 type BalloonProps = {
-  id: number;
+  id: string;
   xPosition: number;
   imageSrc: string;
   sizeIndex: number;
@@ -61,7 +62,7 @@ export const Play = forwardRef<
   const addBalloon = () => {
     const balloonIndex = getRandomIndex(balloonImages.length);
     const newBalloon: BalloonProps = {
-      id: Date.now(),
+      id: uuidv4(),
       xPosition: Math.random() * 100,
       imageSrc: balloonImages[balloonIndex],
       sizeIndex: getRandomIndex(3),
@@ -77,7 +78,7 @@ export const Play = forwardRef<
   useImperativeHandle(ref, () => ({
     addBalloon,
   }));
-
+  console.log('Play', balloons);
   return (
     <div>
       <div
