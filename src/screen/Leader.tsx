@@ -41,6 +41,7 @@ export function Leader() {
 
       if (command === 'SENDMSG' && body === 'state:success') {
         wsRef.current?.send('SENDMSG Followers state:reward');
+        wsRef.current?.send('SET STATE success');
         const s = body.split(':')[1];
         setState(s as LeaderScreenStatus);
       }
@@ -67,6 +68,7 @@ export function Leader() {
             changeState={() => {
               setState('introduction');
               wsRef.current?.send('SENDMSG Followers state:introduction');
+              wsRef.current?.send('SET STATE introduction');
             }}
           />
         );
@@ -76,6 +78,7 @@ export function Leader() {
             changeState={() => {
               setState('playing');
               wsRef.current?.send('SENDMSG Followers state:playing');
+              wsRef.current?.send('SET STATE playing');
             }}
           />
         );
@@ -84,8 +87,9 @@ export function Leader() {
           <Play
             ref={playingRef}
             changeState={() => {
-              setState('success');
-              wsRef.current?.send('SENDMSG Followers state:reward');
+              // setState('success');
+              // wsRef.current?.send('SENDMSG Followers state:reward');
+              // wsRef.current?.send('SET STATE success');
             }}
           />
         );
