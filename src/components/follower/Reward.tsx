@@ -1,20 +1,27 @@
 /** @jsxImportSource @emotion/react */
-import {css} from '@emotion/react';
+import { css } from '@emotion/react';
 import React from 'react';
-import OnigiriSenbei from '../../asset/rice_ball_senbei.png';
+import ShioPackage from '../../asset/shio_package.png';
+import ShoyuPackage from '../../asset/shoyu_package.png';
 
 const Reward = () => {
   return (
     <div css={containerStyle}>
-      <h1 css={headingStyle}>ふうせんをあつめてくれて<br />ありがとう！</h1>
+      <h1 css={headingStyle}>
+        ふうせんをあつめてくれて
+        <br />
+        ありがとう！
+      </h1>
       <div css={boxStyle}>
         <img
-          src={OnigiriSenbei}
-          alt="おにぎりせんべい"
+          src={ShoyuPackage}
+          alt="おにぎりせんべい(しょうゆ)"
           css={imageStyle}
         />
+        <img src={ShioPackage} alt="おにぎりせんべい(しお)" css={imageStyle} />
         <p css={paragraphStyle}>
-          おにぎり坊やからお礼をくれたよ。<br />
+          おにぎり坊やがお礼をくれたよ。
+          <br />
           ブースでおにぎりせんべいをうけとってね
         </p>
       </div>
@@ -22,57 +29,61 @@ const Reward = () => {
   );
 };
 
-// コンテナのスタイル
 const containerStyle = css({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   width: '100%',
-  padding: '16px',
-  boxSizing: 'border-box', // 余白も含めて調整
+  padding: '8px',
+  boxSizing: 'border-box',
 });
 
-// 見出しのスタイル (白い文字で、ボックスの外に表示)
 const headingStyle = css({
-  color: '#FFFFFF', // 白い文字
+  color: '#FFFFFF',
   fontWeight: 'bold',
-  fontSize: '1.8rem',
-  marginBottom: '16px',
+  fontSize: '1.5rem',
+  marginBottom: '12px',
   textAlign: 'center',
 });
 
-// ボックスのスタイル（左右に余白を追加）
 const boxStyle = css({
-  padding: '16px',
-  backgroundColor: '#FFF0A5', // 薄黄色 (LemonChiffon)
+  padding: '8px',
+  backgroundColor: '#FFF0A5',
   borderRadius: '8px',
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   width: '100%',
-  maxWidth: '500px',
-  textAlign: 'center', // テキストを中央揃え
-  marginLeft: '16px', // 左右の余白
-  marginRight: '16px',
+  maxWidth: '400px',
+  textAlign: 'center',
+  marginLeft: '8px',
+  marginRight: '8px',
   boxSizing: 'border-box',
-  '@media (orientation: landscape)': {
-    maxWidth: '80vw', // 横向きのときは画面幅の80%に制限
+
+  '@media (max-width: 600px)': {
+    padding: '4px',
+    margin: '4px',
   },
 });
 
-// 画像のスタイル
 const imageStyle = css({
   maxWidth: '100%',
-  maxHeight: '350px',
+  maxHeight: '320px',
   borderRadius: '8px',
-  height: 'auto', // 画像の比率を保つ
-  objectFit: 'contain', // はみ出しを防ぐための調整
+  height: 'auto',
+  objectFit: 'contain',
+  '@media (max-height: 700px)': {
+    maxHeight: '240px',
+  },
 });
 
-// 段落のスタイル
 const paragraphStyle = css({
-  marginTop: '16px',
+  marginTop: '12px',
   fontWeight: 'bold',
-  fontSize: '1.1rem',
+  fontSize: '1rem',
+
+  '@media (max-width: 600px)': {
+    fontSize: '0.9rem',
+  },
 });
 
 export default Reward;
