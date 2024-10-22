@@ -60,6 +60,9 @@ export const Play = forwardRef<
 
   // addBalloon関数をref経由で呼び出せるようにする
   const addBalloon = () => {
+    if (getRandomIndex(100) > 10) {
+      return;
+    }
     const balloonIndex = getRandomIndex(balloonImages.length);
     const newBalloon: BalloonProps = {
       id: uuidv4(),
@@ -67,12 +70,13 @@ export const Play = forwardRef<
       imageSrc: balloonImages[balloonIndex],
       sizeIndex: getRandomIndex(3),
     };
-    if (balloons.length < 50) {
+    if (balloons.length < 90) {
       setBalloons(prev => [...prev, newBalloon]);
     }
+    const sleeptime = 3000 - getRandomIndex(500);
     setTimeout(() => {
       setBalloons(prev => prev.filter(b => b.id !== newBalloon.id));
-    }, 3000);
+    }, sleeptime);
   };
 
   // useImperativeHandleを使用して、refからaddBalloonを呼び出せるようにする
