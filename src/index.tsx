@@ -1,21 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-import {Follower} from './screen/Follower';
-import {Leader} from './screen/Leader';
+import { Follower } from './screen/Follower';
 
 const router = createBrowserRouter([
   {
     // NOTE: コンテンツ操作の画面
     path: '/',
     element: <Follower />,
-  },
-  {
-    // NOTE: コンテンツ操作結果の反映画面（プロジェクタ投影画面）
-    path: '/leader',
-    element: <Leader />,
   },
 ]);
 
